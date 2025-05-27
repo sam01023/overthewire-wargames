@@ -1,0 +1,47 @@
+Username: bandit0
+Password: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+Notes:
+- for this part i just have to read a readme file using cat function
+
+LEVEL: Bandit1
+Username: bandit1
+Password: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+Notes:
+- for this part the name of the file was - and to access that i have to add
+  ./ before the file name.
+- The function was cat ./-
+
+LEVEL: Bandit2
+Username: bandit2
+Password: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+Notes:
+-for this part the file name has spaces in between them so i have to use \ 
+  instead of the spaces.
+- function was cat spaces\ in\ the\ filename
+
+LEVEL: Bandit3
+Username: bandit3
+Password: 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+Notes:
+- for this one the file was hidden in the file named inhere.
+- I have used ls -all function to get the name of hidden file which can be
+  accessed easily after.
+- cat ...Hiding-From-You
+
+LEVEL: Bandit4
+Username: bandit4
+Password: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+Notes:
+- for this level I have used file command to get the file type.
+- The command is file ./* and then used cat command to view it.
+
+LEVEL: Bandit5
+Username: bandit5
+Password: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+Notes:
+- for this level I have used find command to find the file in the criteria that is given.
+- The command is find -type f -size 1033c | grep "ASCII text"
+
+LEVEL: Bandit6
+Username: bandt6
+Password: 
