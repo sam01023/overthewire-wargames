@@ -1,1 +1,41 @@
-Bandit
+LEVEL: Bandit0
+Username: bandit0
+Password: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+Notes:
+- For this level I have used "cat" command to read the readme file on terminal itself.
+
+LEVEL: Bandit1
+Username: bandit1
+Password: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+Notes:
+- The file name inside this level was "-"
+- To read this file I have used command "cat ./-"
+
+LEVEL: Bandit2
+Username: bandit2
+Password: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+Notes:
+- In this level the file name had spaces in it.
+- I have used "\" between the spaces in the name of the file.
+
+LEVEL: Bandit3
+Username: bandit3
+Password: 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+Notes:
+- The file in this level was hidden so  I have used "ls -all" command to view all file including hidden file.
+
+LEVEL: Bandit4
+Username: bandit4
+Password: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+Notes:
+- In this level their were many types of file and we have to find the human redable file.
+- so I have used "file ./*" to view the types of all files.
+- The one whoes type is ASCII text is the one.
+
+LEVEL: Bandit5
+Username: bandit5
+Password: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+Notes:
+- For this level we have to find human readable, 1033 bytes in size, and not executable file.
+- I have used "find" command.
+- The command was "find -type f -size 1033c".
