@@ -39,3 +39,101 @@ Notes:
 - For this level we have to find human readable, 1033 bytes in size, and not executable file.
 - I have used "find" command.
 - The command was "find -type f -size 1033c".
+
+LEVEL: Bandit6
+Username: bandit6
+Password: morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+Notes:
+- For this level I have used "find" command.
+- The command was "find -user bandit7 -group bandit6 -size 33c 2>/dev/null"
+
+LEVEL: Bandit7
+Username: bandit7
+Password: dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+Notes:
+- For this level I have to find the word "millionth" in the data.txt file, so I used "grep" command.
+- The command was "grep "millionth" data.txt"
+
+LEVEL: Bandit8
+Username: bandit8
+Password: 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+Notes:
+- For this level I have used "sort" command to sort the text inside the file and then used "uniq" command to get the unique text from the file.
+- The command is "sort data.txt | uniq -u "
+
+LEVEL: Bandit9
+Username: bandit9
+Password: FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+Notes:
+- In this level the password is in the file and is preceded by several '=' so I have used "strings" command to read the readable text from the file and then used grep to locate '='.
+- The command is "strings data.txt | grep "===" ".
+
+LEVEL: Bandit10
+Username: bandit10
+Password: dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+Notes:
+- In this level the password is encoded in base64 format so I have used "base64" command.
+- The command is "base64 -d data.txt "
+
+LEVEL: Bandit11
+Username: bandit11
+Password: 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+Notes:
+- In this level the password was encoded in caesar cipher, it is ROT13. Every letter in the file has been rotated 13 places in the aphlabet.
+- The command I have used is "cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' "
+- "tr" command is used to translate the characters.
+
+LEVEL: Bandit12
+Username: bandit12
+Password: FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+Notes:
+- In this level they have provided a hexdump of file  that has been repeatedly compressed.
+- So first I have made a temp folder where I copied the file and then used "xxd -r data.txt > data.out " command to reverse hexdump back to binary file.
+- The command used for this level was "file", "mv", "gunzip", "tar -xf", "bunzip2".
+- This was a repetative process to unzipping the file using the above commands.
+- first check the file type using "file" and then use others to unzip it.
+
+LEVEL: Bandit13
+Username: bandit13
+Password: NA
+Notes:
+- In this level they haven't provided any password instead they have provided us a ssh key which we can use to access bandit14
+- For this level I have used "ssh -i sshkey.private bandit14@localhost -p 2220"
+
+LEVEL: Bandit14
+Username: bandit14
+Password: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+Notes:
+- In this level I first got the password for bandit14 in "/etc/bandit_pass/bandit14".
+- I have submitted that password to 30000 using "echo "bandit14-password" | nc localhost 30000 "
+- "nc" is command used to read from and write to a network connections using TCP or UDP.
+
+LEVEL: Bandit15
+Username: bandit15
+Password: kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+Notes:
+- The objective for this level was to submit the password of bandit15 to port 30001 on localhost over a secure SSL/TLS connection.
+- When the command "openssl s_client -connect localhost:30001" is run, first there will happen a SSL handshake which establishes a secure, encrypted communication channel with the service running on localhost at port 30001.
+- After establishing this secure connection it expects to send the password for Bandit15 as input.
+Then after giving the password the server responses with the password for next level.
+
+LEVEL: Bandit16
+Username: bandit16
+Password: NA
+Notes:
+- In level 16 there was no password instead they have provided a RSA key to access the next level.
+- Which was done by submitting the password of bandit16 to a port in the range 31000 - 32000.
+- So I have used "nc -zv localhost 31000-32000 2>&1 | grep succeeded", where "z" tells nc to scan without actually sending data and "v" gives the detailed output.
+- After getting all the ports I have used "echo "password-bandit16" | openssl s_client -connect localhost:<port> ". I have used this for every port and then I got key from one of the port.
+- I saved that key in a temp folder and then used it to open the next level's ssh using "ssh -i bandit17_key bandit17@bandit.labs.overthewire.org -p 2220"
+
+LEVEL: Bandit17
+Username: bandit17
+Password: x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+Notes:
+- In this level we just have to find the line that is changed in the new password file.
+- I have used "diff passwords.old passwords.new" to get the different texts, the second one is the password.
+
+LEVEL: Bandit18
+Username: bandit18
+Password: 
