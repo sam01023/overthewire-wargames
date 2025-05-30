@@ -136,4 +136,27 @@ Notes:
 
 LEVEL: Bandit18
 Username: bandit18
-Password: 
+Password: cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
+Notes:
+- In this level the password was stored in afile readme in homedirectory.
+- But the .bashrd has been modified to log me out when log in with ssh.
+- For this level I have used " ssh -T bandit18@bandit.labs.overthewire.org -p 2220 "cat ~/readme" " command to see only the readme file without using the .bashrc.
+- "-T" tells the ssh to don't open a psedo-terminal and just do the job.
+- when using the ssh it allocates a pseudo-terminal but in this level .bashrc which starts as the pseudo-terminal is allocated is not allowing us to log in so we used "-T" which doesn't allocate pseudo-terminal and instead does the job.
+
+LEVEL: Bandit19
+Username: bandit19
+Password: 0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
+Notes:
+- This level provides us with setuid binary in the homedirectory.
+- This is like a vehicale that takes us to the password for bandit20. It gives bandit19 the privilages of bandit20.
+- To find out how to use this we have to first execute it with the command "./bandit20-do".
+- After that use the command "./bandit20-do cat /etc/bandit_pass/bandit20" and you will get the password.
+
+LEVEL: Bandit20
+Username: bandit20
+Password: EeoULMCra2q0dSkYj561DX7s1CpBuOBt
+Notes:
+- In this level they have provided us with a setuid binary which makes connctions to localhost on the port you specify as a commandline argument.
+- To get a free localhost port I first gave a command "echo "0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO" | nc -zv localhost 1024-65535" and then I used "echo "0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO" | nc -l -p 4444" to listen on the new port.
+- On another teminal I have used "./bandit20-do 4444" this connects to the new port and then password new port reads it and then responses it with the password for bandit21.
