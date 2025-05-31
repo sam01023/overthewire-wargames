@@ -160,3 +160,73 @@ Notes:
 - In this level they have provided us with a setuid binary which makes connctions to localhost on the port you specify as a commandline argument.
 - To get a free localhost port I first gave a command "echo "0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO" | nc -zv localhost 1024-65535" and then I used "echo "0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO" | nc -l -p 4444" to listen on the new port.
 - On another teminal I have used "./bandit20-do 4444" this connects to the new port and then password new port reads it and then responses it with the password for bandit21.
+
+LEVEL: Bandit21
+Username: bandit21
+Password: tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
+Notes:
+- In this level we have to check what kind of job is running which we can look by read the "/etc/cron.d/*".
+- It will give every job that is running at that time.
+- We have to look for bandit22's job and then execute that file.
+- The command that I used is "cat /usr/bin/cronjob_bandit22.sh" and then will give a shell script which by understanding, it tells that the password for bandit22 is stored in some sort of tmp file which it also gives it.
+- And then I read that tmp file and I got the password.
+
+LEVEL: Bandit22
+Username: bandit22
+Password: 0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+Notes:
+- Similar as bandit21, we have to look in the cron jobs.
+- Look for the jobs related to bandit23.
+- Then execute the file related to bandit23's job and then understand the script.
+- The script told that the password is stored in the temp file, To get that temp file I have to use " echo I am user bandit23 | md5sum | cut -d ' ' -f1 " and then read the tmp file and you will get the password.
+
+LEVEL: Bandit23
+Username: bandit23
+Password: gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
+Notes:
+- In this level we have to write a shell script for the first time.
+- The cron executes a file in "/var/spool/bandit24/foo" as a bandit24 so we have to make a script that will store password of bandit24 while the cron is doing its job.
+- So what we'll do in this is we will first make a tmp file and then write a shell script which should lopk like"
+#!/bin/bash
+
+cat /etc/bandit_pass/bandit24 > /tmp/pass/password
+"
+- And then copy this shell script to "/var/spool/bandit24/foo" after (1-2min) the cron will run it as a bandit24.
+- The script says to store the password of bandit24 to the folder password which is in the bandit23.
+
+LEVEL: Bandit24
+Username: bandit24
+Password: iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
+Notes:
+- In this level we have to use brute force to get the password from the "localhost:30002".
+- To connect with port 30002 we have to give password of bandit23 and four digit pin to it.
+- The pin is anything from 0000-9999, so I have made a shell script "
+#!/bin/bash
+
+PASSWORD="gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8"
+
+for PIN in $(seq -w 0000 9999); do
+    echo "Trying PIN: $PIN"
+    echo "$PASSWORD $PIN"
+done | nc localhost 30002
+"
+- The script gives the pin from 0000 to 9999 and also connects to port 30002.
+- Once the script runs it will scan with all the pins and will provide password for bandit25.
+
+LEVEL: Bandit25
+Username: bandit25
+Password: s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ
+Notes:
+- In this level we have to login to bandit26 using command "ssh -i bandit26.sshkey bandit26@bandit.labs.overthewire.org -p 2220" but you can see that it logs us out from it.
+- So first we have to check why it is restricting us by reading the file in "/etc/passwd/bandit26".
+- By understanding it, it tells that it restricts because of "showtext".
+- So now while loging to bandit26 I have made my terminal screen small so it will get "more" option.
+- While it is in "more" option type "v" it will open vim, now type ":set shell=/bin/bash" and then hit enter and then type ":shell" it will open bandit26's terminal now you can go to "/etc/bandit_pass/bandit26", you will get bandit26's password.
+
+LEVEL: Bandit26
+Useername: bandit26
+Password: upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB
+Notes:
+- Now bandit26 contains of setuid file for bandit27.
+- We first run that file "./bandit27-do"
+- Then type the command "./bandit27-do cat /etc/bandit_pass/bandit27"
