@@ -230,3 +230,35 @@ Notes:
 - Now bandit26 contains of setuid file for bandit27.
 - We first run that file "./bandit27-do"
 - Then type the command "./bandit27-do cat /etc/bandit_pass/bandit27"
+
+LEVEL: Bandit27
+Username: bandit27
+Password: Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN
+Notes:
+- In this level we have to clone a git repo from "ssh://bandit27-git@localhost/home/bandit27-git/repo".
+- First I went to the tmp folder.
+- And then I used "git clone ssh://bandit27-git@localhost/home/bandit27-git/repo".
+- And then read the README file.
+
+LEVEL: Bandit28
+Username: bandit28
+Password: 4pT1t5DENaYuqnqvadYs1oE4QLCdjmJ7
+Notes:
+- In this level I cloned a Git repository hosted on the Bandit server.
+- Inside the repo was a file: README.md
+- The current version of README.md was censored.
+- I used "git log", by which I discovered that this file had earlier commits; The latest commit message was: "fix info leak", means a password had been committed accidentally and was later removed.
+- I used "git checkout <old_commit_hash>" to get the password that was there before the latest commit.
+
+LEVEL: Bandit29
+Username: bandit29
+Password: qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL
+- First I cloned the Git repo via SSH.
+- Checked README.md — no password in current or initial commit.
+- Used git log to find commits and checked file content at each commit with git show <commit>:README.md.
+- Ran git fsck --full to find dangling blobs (deleted/unreferenced objects).
+- Found repo objects are packed (inside .git/objects/pack).
+- Used git verify-pack -v on pack index file to list all objects.
+- Inspected blob objects with git show <blob_sha> to find deleted content.
+- Found the password hidden in a Git object inside the packfile.
+
