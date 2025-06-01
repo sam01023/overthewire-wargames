@@ -253,6 +253,7 @@ Notes:
 LEVEL: Bandit29
 Username: bandit29
 Password: qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL
+Notes:
 - First I cloned the Git repo via SSH.
 - Checked README.md — no password in current or initial commit.
 - Used git log to find commits and checked file content at each commit with git show <commit>:README.md.
@@ -262,3 +263,28 @@ Password: qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL
 - Inspected blob objects with git show <blob_sha> to find deleted content.
 - Found the password hidden in a Git object inside the packfile.
 
+LEVEL: Bandit30
+Username: bandit30
+Password: fb5S2xb7bRyFmAvQYQGEqsbhVyJqhnDy
+Notes:
+- Similarly as before we have to clone a git repo. As you clone it, it will give you an error that "ssh is working on port 22" so you have to manually set the ssh to work on port 2220 by using command "GIT_SSH_COMMAND='ssh -p 2220' git clone ssh://bandit30-git@localhost/home/bandit30-git/repo bandit_30_repo", This will store the cloned repo inside "bandit_30_repo".
+- how you have to look for the password. I first checked out for git logs but I found nothing, then I checked for tags and I found a tag named "secret" but this cannot be accesed, the tag existed, but the commit it pointed to wasn't downloaded in my initial clone.
+- So I fetched remote tags manually using the command "GIT_SSH_COMMAND='ssh -p 2220' git fetch origin --tags".
+- After hitting that command you can use "git show secret" to get the password.
+
+LEVEL: Bandit31
+Username: bandit31
+Password: 3O9RfhqyAlVBEZpVb6LYStshZoqoSx5K
+Notes:
+- In this level we doesn't have to just read the file, we have to push a file called "key.txt" which has "May I come in?" typed inside it.
+- Then this file is to be added to the index by using "git add -f key.txt".
+- Then I just pushed it using the command "GIT_SSH_COMMAND="ssh -p 2220" git push origin master".
+- Then the password will be there to see.
+
+LEVEL: Bandit32
+Username: bandit32
+Password: tQdtbs5D5i2vJwkO8mEyYEyTL8izoeJ0
+Notes:
+- This level was very simple, as you login to the bandit; it welcomes us to an uppercase shell which makes evey command we type in uppercase.
+- So I have used "$0" instead because $0 holds the name of the shell like "/bin/bash" and since we cannot write it in the shell completely in the shell since it will make it "/BIN/BASH" I have used $0 that holds this value.
+- Then I just read the password from "/etc/bandit_pass/bandit33".
