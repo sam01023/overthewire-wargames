@@ -1,0 +1,63 @@
+LEVEL:Leviathan0
+Username: leviathan0
+Password: 3QJ3TgzHDq
+Notes:
+- In this level I first looked for the files hidden using command "ls -la" and I found a folder named ".backup".
+- I changed my directory to ".backup" and then I found a file named "bookmarks.html"
+- I used "cat bookmarks.html | grep password" command to get the password from that file.
+
+LEVEL: Leviathan1
+Username: leviathan1
+Password: NsN1HwFoyN
+Notes:
+- In this level they have provided with a setuid file to us, I first run the file and it asked me for a password.
+- To get the password I have used "ltrace ./check" command. "ltrace" shows you all the library function calls a program makes while it runs.
+- In this the password we type is compared with the correct password using the function "strcmp".
+- You can see the correct password which is "sex".
+- As you type "sex" you will go to the shell of leviathan2 where you can find you password in "/etc/leviathan_pass/leviathan2".
+
+LEVEL: Leviathan2
+Username: leviathan2
+Password: f0n8h2iWLP
+Notes:
+- In this level we have to use command injection technique.
+- They have provided us with a setuid file named "printfile" what it does is that it just print the file using "/bin/cat".
+- This file runs as leviathan3 but is in the leviathan2.
+- So I have just made a file named "file;bash" in the tmp folder and used command injection technique.
+- I have used "./printfile /tmp/file\;bash" to run it and get into the leviathan3 bash shell.
+- From there you can get the password from "/etc/leviathan_pass/leviathan3".
+
+LEVEL: Leviathan3
+Username: leviathan3
+Password: WG1egElCvO
+Notes:
+- Similar to level 1, you have to use "ltrace" to find the correct answer.
+- Once you type the correct answer it will take you to the leviathan4 shell.
+- You will then be able to get the password from "/etc/leviathan_pass/leviathan4".
+
+LEVEL: Leviathan4
+Username: leviathan4
+Password: 0dyxT7F4QD
+Notes:
+- In this level there is a hidden folder called ".trash" inside that folder you will find a binary file which contains series of binary.
+- Convert that series of binary to ascii text and that is you password for leviathan5.
+
+LEVEL: Leviathan5
+Username: leviathan5
+Password: szo7HDB88w
+Notes:
+- In this level what we are doing is that we are using symlink to get the password.
+- symlink is like a shortcut that is in the windows.
+- They give us a file that reads a file name "file.log" in "tmp" folder.
+- So I made a file named "file.log" in tmp folder and then I used symlink to link that to the leviathan6 password using command "ln -s /etc/leviathan_pass/leviathan6 /tmp/file.log" 
+then I have run the "leviathan5" file that they provided.
+- It gives the password for leviathan6.
+
+LEVEL: Leviathan6
+Username: leviathan6
+Password: qEs5Io5yM8
+Notes:
+- In this level they have provided with a file which needs a 4 digit code so that it will run the leviathan7 shell.
+- for that we have write a one-line code "for i in {0000..9999};do echo $i; ./leviathan6 $i; done;".
+- This will run till it gets correct code and then it starts leviathan7 terminal.
+- then you can get the password for it from "/etc/leviathan_pass/leviathan7".
